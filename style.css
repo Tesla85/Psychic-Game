@@ -2,7 +2,7 @@
 body {
     background-image: url(yoda3.jpeg);
     background-repeat: no-repeat;
-    background-size: stretch;
+    background-size: 100%;
     text-align: center;
     color: rgb(134, 211, 45);
     font-size: 30px;

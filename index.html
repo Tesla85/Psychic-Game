@@ -51,25 +51,29 @@
                     
                 // This logic determines the outcome of the game (Correct guess, incorrect guess, guesses remaining-1), and increments the appropriate number.
                 function reset() {
-                    var computerPick = computerOptions[Math.floor(Math.random() * computerOptions.length)];
+                    guessLog = [];
+                    guessesLeft = 10;
+                    computerPick = computerOptions[Math.floor(Math.random() * computerOptions.length)];
                 }
 
                 if (userGuess === computerPick) {
                     mindReader++;
+                    reset();
                 } else {
-                    (guessesLeft--); 
+                    (guessesLeft--);
+                     guessLog.push(userGuess);
                 }
 
-                if (guessesLeft < 1) {
+                if (guessesLeft === 0) {
                     weakForce++;
-                } else {
-                    (guessesLeft === 0);
-                    (userGuess === computerPick);
-                }
+                    reset();
+                } 
+                
+                
 
                 // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and mindReader/weakForce/guess.
                 var html =
-                    "<p>You chose: " + userGuess + "</p>" +
+                    "<p>You chose: " + guessLog + "</p>" +
                     "<p>See my thoughts, you can!: " + mindReader + "</p>" +
                     "<p>Strooong with you....the Force is not...mmmmmm!: " + weakForce + "</p>" +
                     "<p>Do or do not...there is no try!: " + guessesLeft + "</p>";
