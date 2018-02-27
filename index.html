@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <title>Jedi Mind Trick</title>
+
+    <link rel="stylesheet" href="style.css">
+    
+    
+
+</head>
+<body>
+
+    <!-- <script type="text/javascript" src="game.js"></script> -->
+
+    <div class="game">
+        <p>Any key...press you can!</p>
+    </div>
+
+   <script type="text/javascript">
+   
+        //Create variable to track correct guesses, incorrect guesses, and number of guesses remaining until reset
+        var mindReader = 0;
+        //incorrect guess
+        var weakForce = 0;
+        //Number of guesses remaining until reset
+        var guessesLeft = 10;
+
+        //Creates array for all options A-Z
+        var computerOptions = ["a", "b", "c",
+                            "d", "e", "f", 
+                            "g", "h","i", 
+                            "j", "k", "l", 
+                            "m", "n", "o", 
+                            "p", "q", "r", 
+                            "s", "t", "u", 
+                            "v", "w", "x", 
+                            "y", "z"];
+
+        var guessLog = []
+
+        //What key was pressed, brings number of guesses down by one.
+        document.onkeyup = function (event) {
+
+                // Determines which key was pressed.
+                var userGuess = event.key;
+                
+                // Randomly chooses a choice from the options array. This is the Computer's guess.
+                var computerPick = computerOptions[Math.floor(Math.random() * computerOptions.length)];
+
+                    
+                // This logic determines the outcome of the game (Correct guess, incorrect guess, guesses remaining-1), and increments the appropriate number.
+                function reset() {
+                    var computerPick = computerOptions[Math.floor(Math.random() * computerOptions.length)];
+                }
+
+                if (userGuess === computerPick) {
+                    mindReader++;
+                } else {
+                    (guessesLeft--); 
+                }
+
+                if (guessesLeft < 1) {
+                    weakForce++;
+                } else {
+                    (guessesLeft === 0);
+                    (userGuess === computerPick);
+                }
+
+                // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and mindReader/weakForce/guess.
+                var html =
+                    "<p>You chose: " + userGuess + "</p>" +
+                    "<p>See my thoughts, you can!: " + mindReader + "</p>" +
+                    "<p>Strooong with you....the Force is not...mmmmmm!: " + weakForce + "</p>" +
+                    "<p>Do or do not...there is no try!: " + guessesLeft + "</p>";
+
+                // Set the inner HTML contents of the #game div to our html string
+                document.querySelector(".game").innerHTML = html;
+
+        };
+
+
+ 
+        
+        </script>
+
+   
+
+
+
+
+</body>
+</html>
